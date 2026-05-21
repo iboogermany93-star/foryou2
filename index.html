@@ -1,0 +1,1693 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>ForYou Reinigung</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="ForYou Reinigung – Moderne Reinigungsfirma in Deutschland. Wohnungen, Büros, Fenster & mehr." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f4f7f6;
+      --bg-soft: #ffffff;
+      --bg-strong: #e2f5eb;
+      --text-main: #0f172a;
+      --text-muted: #6b7280;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.12);
+      --accent-strong: #16a34a;
+      --border-soft: rgba(148, 163, 184, 0.4);
+      --shadow-soft: 0 18px 50px rgba(15, 23, 42, 0.12);
+      --radius-xl: 24px;
+    }
+
+    body.dark {
+      --bg: #020617;
+      --bg-soft: #020617;
+      --bg-strong: #020617;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --accent: #22c55e;
+      --accent-soft: rgba(34, 197, 94, 0.18);
+      --accent-strong: #22c55e;
+      --border-soft: rgba(148, 163, 184, 0.5);
+      --shadow-soft: 0 24px 80px rgba(15, 23, 42, 0.9);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #e0f2f1 0, #f4f7f6 40%, #e5e7eb 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      transition: background 0.25s ease-out, color 0.25s ease-out;
+    }
+
+    body.dark {
+      background: radial-gradient(circle at top, #0b1120 0, #020617 40%, #000 100%);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(248, 250, 252, 0.9), transparent);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+      transition: box-shadow 0.25s ease-out;
+    }
+
+    body.dark header {
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), transparent);
+    }
+
+    header.magic-active::after {
+      content: "";
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      bottom: -1px;
+      height: 3px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 10% 50%, #bbf7d0, transparent 40%),
+                  radial-gradient(circle at 50% 50%, #22c55e, transparent 45%),
+                  radial-gradient(circle at 90% 50%, #4ade80, transparent 40%);
+      box-shadow: 0 0 22px rgba(34, 197, 94, 0.9);
+      opacity: 0.95;
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 36px;
+      height: 36px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #bbf7d0, #22c55e 40%, #15803d 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #022c22;
+      font-weight: 800;
+      font-size: 18px;
+      box-shadow: 0 0 26px rgba(34, 197, 94, 0.8);
+      position: relative;
+    }
+
+    .logo-mark::after {
+      content: "✨";
+      position: absolute;
+      font-size: 11px;
+      right: -6px;
+      top: -6px;
+    }
+
+    .logo-text-main {
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      font-size: 20px;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .logo-wand {
+      font-size: 16px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      color: #16a34a;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .logo-text-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      position: relative;
+      padding-bottom: 4px;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), #22c55e);
+      border-radius: 999px;
+      transition: width 0.2s ease-out;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .toggle-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    body.dark .toggle-group {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .toggle-btn {
+      border: none;
+      background: transparent;
+      font-size: 12px;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 2px 6px;
+      border-radius: 999px;
+    }
+
+    .toggle-btn.active {
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      font-weight: 600;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 13px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, background 0.15s ease-out;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+      color: #022c22;
+      box-shadow: 0 12px 40px rgba(34, 197, 94, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 60px rgba(34, 197, 94, 0.6);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-muted);
+      border: 1px solid var(--border-soft);
+    }
+
+    body.dark .btn-ghost {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 1);
+      color: var(--text-main);
+    }
+
+    body.dark .btn-ghost:hover {
+      background: rgba(15, 23, 42, 1);
+    }
+
+    main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+      padding: 32px 22px;
+      margin-top: 10px;
+      border-radius: 32px;
+      background: radial-gradient(circle at top left, rgba(34, 197, 94, 0.16), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(45, 212, 191, 0.16), transparent 55%),
+                  var(--bg-soft);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border-soft);
+      color: var(--text-muted);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      margin-bottom: 14px;
+    }
+
+    body.dark .hero-pill {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #bbf7d0, #22c55e 40%, #166534 100%);
+      box-shadow: 0 0 16px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .hero-title span {
+      background: linear-gradient(to right, #16a34a, #22c55e, #4ade80);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 460px;
+      margin-bottom: 18px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--text-muted);
+    }
+
+    body.dark .badge {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .hero-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .hero-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-meta-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.8);
+    }
+
+    .hero-right {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 14px;
+    }
+
+    .card-main {
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top, rgba(34, 197, 94, 0.16), transparent 55%),
+                  var(--bg-soft);
+      border: 1px solid var(--border-soft);
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .card-main-title {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .status-pill {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      border: 1px solid rgba(34, 197, 94, 0.5);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    }
+
+    .card-main-body {
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 14px 14px 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body.dark .card-main-body {
+      background: rgba(15, 23, 42, 0.96);
+      border-color: rgba(30, 64, 175, 0.7);
+    }
+
+    .card-main-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card-main-text {
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .card-main-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .card-main-tag {
+      font-size: 11px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border-soft);
+      color: var(--text-muted);
+    }
+
+    body.dark .card-main-tag {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .card-main-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .card-main-footer small {
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .card-main-footer strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .card-floating {
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-soft);
+      padding: 10px 12px;
+      font-size: 11px;
+      color: var(--text-muted);
+      display: inline-flex;
+      flex-direction: column;
+      gap: 4px;
+      position: absolute;
+      right: 4px;
+      bottom: -4px;
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-soft);
+    }
+
+    body.dark .card-floating {
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .card-floating span {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .section {
+      margin-top: 48px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      max-width: 420px;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    body.dark .section-tag {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-soft);
+      padding: 14px 14px 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out;
+    }
+
+    body.dark .card {
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-soft);
+      border-color: rgba(34, 197, 94, 0.7);
+    }
+
+    .card h3 {
+      font-size: 14px;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .card-pill {
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border-soft);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    body.dark .card-pill {
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .card-pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+    }
+
+    .card-list {
+      list-style: none;
+      margin-top: 8px;
+      font-size: 12px;
+    }
+
+    .card-list li {
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+      margin-bottom: 4px;
+    }
+
+    .card-list li::before {
+      content: "•";
+      color: var(--accent);
+      margin-top: 1px;
+    }
+
+    .before-after-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .ba-card {
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-soft);
+      padding: 12px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    body.dark .ba-card {
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .ba-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .ba-wrapper {
+      position: relative;
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .ba-img {
+      display: block;
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .ba-after {
+      position: absolute;
+      inset: 0;
+      width: 50%;
+      overflow: hidden;
+      border-right: 2px solid rgba(255, 255, 255, 0.9);
+    }
+
+    .ba-after img {
+      width: 200%;
+      height: 100%;
+      object-fit: cover;
+      transform: translateX(-25%);
+    }
+
+    .ba-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      color: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      box-shadow: 0 0 18px rgba(15, 23, 42, 0.7);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .price-card {
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-soft);
+      padding: 16px 16px 14px;
+      font-size: 13px;
+      color: var(--text-muted);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, border-color 0.15s ease-out;
+    }
+
+    body.dark .price-card {
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .price-card.highlight {
+      border-color: rgba(34, 197, 94, 0.9);
+      box-shadow: var(--shadow-soft);
+      background: radial-gradient(circle at top, rgba(34, 197, 94, 0.16), transparent 55%),
+                  rgba(255, 255, 255, 0.95);
+    }
+
+    body.dark .price-card.highlight {
+      background: radial-gradient(circle at top, rgba(34, 197, 94, 0.18), transparent 55%),
+                  rgba(15, 23, 42, 0.96);
+    }
+
+    .price-card h3 {
+      font-size: 14px;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+
+    .price-tagline {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .price-value {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent-strong);
+      margin-bottom: 4px;
+    }
+
+    .price-unit {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .price-list {
+      list-style: none;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+
+    .price-list li {
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+      margin-bottom: 4px;
+    }
+
+    .price-list li::before {
+      content: "✓";
+      color: #22c55e;
+      font-size: 11px;
+      margin-top: 1px;
+    }
+
+    .about-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .about-text {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .about-highlight,
+    .contact-card {
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1px solid var(--border-soft);
+      padding: 12px 14px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    body.dark .about-highlight,
+    body.dark .contact-card {
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .about-highlight strong {
+      color: var(--text-main);
+    }
+
+    .contact-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 13px;
+    }
+
+    .contact-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .contact-value {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .footer {
+      margin-top: 40px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: space-between;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 11px;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-main);
+    }
+
+    .floating-contact {
+      position: fixed;
+      right: 18px;
+      bottom: 22px;
+      z-index: 40;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .floating-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 30% 0, #bbf7d0, #22c55e 40%, #15803d 100%);
+      box-shadow: 0 14px 40px rgba(15, 23, 42, 0.45);
+      color: #022c22;
+      font-size: 22px;
+      text-decoration: none;
+      transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+    }
+
+    .floating-btn:hover {
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 18px 60px rgba(34, 197, 94, 0.7);
+    }
+
+    .floating-btn.secondary {
+      background: radial-gradient(circle at 30% 0, #e0f2fe, #38bdf8 40%, #0ea5e9 100%);
+      color: #0b1120;
+    }
+
+    .floating-btn.mail {
+      background: radial-gradient(circle at 30% 0, #fef9c3, #facc15 40%, #eab308 100%);
+      color: #422006;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-right {
+        order: -1;
+      }
+      .nav-links {
+        display: none;
+      }
+      .pricing-grid,
+      .grid-3,
+      .before-after-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .about-grid,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      main {
+        padding-inline: 16px;
+      }
+      .hero {
+        padding: 20px 16px;
+      }
+      .pricing-grid,
+      .grid-3,
+      .before-after-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .floating-contact {
+        right: 12px;
+        bottom: 16px;
+      }
+    }
+  </style>
+</head>
+<body class="light">
+  <header id="site-header">
+    <nav class="nav">
+      <div class="logo">
+        <div class="logo-mark">F</div>
+        <div>
+          <div class="logo-text-main">
+            ForYou Reinigung
+            <span class="logo-wand">
+              ✨🧹
+            </span>
+          </div>
+          <div class="logo-text-sub">High Quality Cleaning</div>
+        </div>
+      </div>
+      <div class="nav-links">
+        <a href="#services" data-i18n-de="Leistungen" data-i18n-en="Services">Leistungen</a>
+        <a href="#before-after" data-i18n-de="Vorher / Nachher" data-i18n-en="Before / After">Vorher / Nachher</a>
+        <a href="#pricing" data-i18n-de="Preise" data-i18n-en="Pricing">Preise</a>
+        <a href="#about" data-i18n-de="Über uns" data-i18n-en="About">Über uns</a>
+        <a href="#contact" data-i18n-de="Kontakt" data-i18n-en="Contact">Kontakt</a>
+      </div>
+      <div class="nav-cta">
+        <div class="toggle-group">
+          <button class="toggle-btn active" id="lang-de">DE</button>
+          <button class="toggle-btn" id="lang-en">EN</button>
+        </div>
+        <div class="toggle-group">
+          <button class="toggle-btn active" id="mode-day">☀️</button>
+          <button class="toggle-btn" id="mode-night">🌙</button>
+        </div>
+        <a href="#contact" class="btn btn-primary" data-i18n-de="Angebot" data-i18n-en="Get quote">Angebot</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-pill" data-i18n-de="Premium Reinigungsservice" data-i18n-en="Premium cleaning service">
+          <div class="hero-pill-dot"></div>
+          Premium Reinigungsservice
+        </div>
+        <h1 class="hero-title">
+          <span>ForYou Reinigung</span><br />
+          <span data-i18n-de="High Quality Cleaning Experience"
+                data-i18n-en="High Quality Cleaning Experience">
+            High Quality Cleaning Experience
+          </span>
+        </h1>
+        <p class="hero-subtitle"
+           data-i18n-de="Eine moderne Reinigungsfirma, die aussieht wie ein Design‑Studio – und arbeitet wie ein Profi‑Dienstleister."
+           data-i18n-en="A modern cleaning company that looks like a design studio – and works like a professional service provider.">
+          Eine moderne Reinigungsfirma, die aussieht wie ein Design‑Studio – und arbeitet wie ein Profi‑Dienstleister.
+        </p>
+        <div class="hero-badges">
+          <div class="badge" data-i18n-de="Wohnung & Büro" data-i18n-en="Home & Office">Wohnung & Büro</div>
+          <div class="badge" data-i18n-de="Fenster & Umzug" data-i18n-en="Windows & Move-out">Fenster & Umzug</div>
+          <div class="badge" data-i18n-de="Modernes, digitales Erlebnis" data-i18n-en="Modern digital experience">Modernes, digitales Erlebnis</div>
+        </div>
+        <div class="hero-cta-row">
+          <a href="#contact" class="btn btn-primary"
+             data-i18n-de="Kostenloses Angebot sichern"
+             data-i18n-en="Get your free quote">
+            Kostenloses Angebot sichern
+          </a>
+          <a href="#services" class="btn btn-ghost"
+             data-i18n-de="Leistungen ansehen"
+             data-i18n-en="View services">
+            Leistungen ansehen
+          </a>
+        </div>
+        <div class="hero-meta">
+          <span><span class="hero-meta-dot"></span>
+            <span data-i18n-de="Einsatzgebiet: Köln • Bonn • Umgebung"
+                  data-i18n-en="Service area: Cologne • Bonn • region">
+              Einsatzgebiet: Köln • Bonn • Umgebung
+            </span>
+          </span>
+          <span><span class="hero-meta-dot"></span>
+            <span data-i18n-de="Flexible Termine & faire Preise"
+                  data-i18n-en="Flexible appointments & fair pricing">
+              Flexible Termine & faire Preise
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="card-main">
+          <div class="card-main-header">
+            <div class="card-main-title"
+                 data-i18n-de="Live‑Status – ForYou Reinigung"
+                 data-i18n-en="Live status – ForYou Reinigung">
+              Live‑Status – ForYou Reinigung
+            </div>
+            <div class="status-pill">
+              <span class="status-dot"></span>
+              <span data-i18n-de="Kapazität: Verfügbar"
+                    data-i18n-en="Capacity: Available">
+                Kapazität: Verfügbar
+              </span>
+            </div>
+          </div>
+          <div class="card-main-body">
+            <div class="card-main-row">
+              <div>
+                <div class="card-main-text"
+                     data-i18n-de="Nächster freier Slot"
+                     data-i18n-en="Next available slot">
+                  Nächster freier Slot
+                </div>
+                <div class="card-main-sub"
+                     data-i18n-de="Innerhalb von 24–48 Stunden"
+                     data-i18n-en="Within 24–48 hours">
+                  Innerhalb von 24–48 Stunden
+                </div>
+              </div>
+              <div class="card-main-tag"
+                   data-i18n-de="Express‑Reinigung"
+                   data-i18n-en="Express cleaning">
+                Express‑Reinigung
+              </div>
+            </div>
+            <div class="card-main-row">
+              <div>
+                <div class="card-main-text"
+                     data-i18n-de="Durchschnittliche Bewertung"
+                     data-i18n-en="Average rating">
+                  Durchschnittliche Bewertung
+                </div>
+                <div class="card-main-sub"
+                     data-i18n-de="4,9 / 5 – Stammkunden & Empfehlungen"
+                     data-i18n-en="4.9 / 5 – regular clients & referrals">
+                  4,9 / 5 – Stammkunden & Empfehlungen
+                </div>
+              </div>
+              <div class="card-main-tag"
+                   data-i18n-de="Qualitäts‑Check"
+                   data-i18n-en="Quality check">
+                Qualitäts‑Check
+              </div>
+            </div>
+            <div class="card-main-footer">
+              <small
+                data-i18n-de="✨ Rund um die Uhr für Sie im Einsatz – 24h Reinigungsservice."
+                data-i18n-en="✨ Around the clock at your service – 24h cleaning service.">
+                ✨ Rund um die Uhr für Sie im Einsatz – 24h Reinigungsservice.
+              </small>
+              <strong>ForYou Reinigung</strong>
+            </div>
+          </div>
+          <div class="card-floating">
+            <div data-i18n-de="Live‑Status: Team unterwegs"
+                 data-i18n-en="Live status: Team on the way">
+              Live‑Status: Team unterwegs
+            </div>
+            <div data-i18n-de="Aktuelle Zone: Köln • Bonn • Umgebung"
+                 data-i18n-en="Current zone: Cologne • Bonn • region">
+              Aktuelle Zone: Köln • Bonn • Umgebung
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-title"
+               data-i18n-de="Leistungen, die mehr können als Standard."
+               data-i18n-en="Services that go beyond standard.">
+            Leistungen, die mehr können als Standard.
+          </div>
+          <div class="section-subtitle"
+               data-i18n-de="Wir kombinieren präzise Reinigungsarbeit mit einem modernen, digitalen Service‑Erlebnis – für Privatkunden und Unternehmen."
+               data-i18n-en="We combine precise cleaning with a modern digital service experience – for private clients and businesses.">
+            Wir kombinieren präzise Reinigungsarbeit mit einem modernen, digitalen Service‑Erlebnis – für Privatkunden und Unternehmen.
+          </div>
+        </div>
+        <div class="section-tag"
+             data-i18n-de="Wohnung • Büro • Fenster • Umzug"
+             data-i18n-en="Home • Office • Windows • Move-out">
+          Wohnung • Büro • Fenster • Umzug
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <article class="card">
+          <div class="card-pill">
+            <span class="card-pill-dot"></span>
+            <span data-i18n-de="Premium Wohnungsreinigung" data-i18n-en="Premium home cleaning">
+              Premium Wohnungsreinigung
+            </span>
+          </div>
+          <h3 data-i18n-de="Wohnungen & Häuser" data-i18n-en="Apartments & houses">
+            Wohnungen & Häuser
+          </h3>
+          <p data-i18n-de="Gründliche Reinigung für moderne Wohnungen und Häuser – ideal für Vielbeschäftigte, Familien und alle, die es minimalistisch und makellos mögen."
+             data-i18n-en="Thorough cleaning for modern apartments and houses – ideal for busy people, families and anyone who loves minimal and spotless spaces.">
+            Gründliche Reinigung für moderne Wohnungen und Häuser – ideal für Vielbeschäftigte, Familien und alle, die es minimalistisch und makellos mögen.
+          </p>
+          <ul class="card-list">
+            <li data-i18n-de="Regelmäßige oder einmalige Reinigung"
+                data-i18n-en="Regular or one-time cleaning">
+              Regelmäßige oder einmalige Reinigung
+            </li>
+            <li data-i18n-de="Küche, Bad, Wohnräume & Flächen"
+                data-i18n-en="Kitchen, bathroom, living areas & surfaces">
+              Küche, Bad, Wohnräume & Flächen
+            </li>
+            <li data-i18n-de="Detail‑Fokus: Griffe, Schalter, Spiegel"
+                data-i18n-en="Detail focus: handles, switches, mirrors">
+              Detail‑Fokus: Griffe, Schalter, Spiegel
+            </li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-pill">
+            <span class="card-pill-dot"></span>
+            <span data-i18n-de="Büro & Workspace" data-i18n-en="Office & workspace">
+              Büro & Workspace
+            </span>
+          </div>
+          <h3 data-i18n-de="Moderne Büroreinigung" data-i18n-en="Modern office cleaning">
+            Moderne Büroreinigung
+          </h3>
+          <p data-i18n-de="Saubere Arbeitsplätze, Meetingräume und Empfangsbereiche – für Teams, die in einer klaren, strukturierten Umgebung arbeiten wollen."
+             data-i18n-en="Clean workstations, meeting rooms and reception areas – for teams that want to work in a clear, structured environment.">
+            Saubere Arbeitsplätze, Meetingräume und Empfangsbereiche – für Teams, die in einer klaren, strukturierten Umgebung arbeiten wollen.
+          </p>
+          <ul class="card-list">
+            <li data-i18n-de="Flexible Zeiten außerhalb der Bürozeiten"
+                data-i18n-en="Flexible times outside office hours">
+              Flexible Zeiten außerhalb der Bürozeiten
+            </li>
+            <li data-i18n-de="Arbeitsplätze, Glasflächen, Sanitärbereiche"
+                data-i18n-en="Workstations, glass surfaces, sanitary areas">
+              Arbeitsplätze, Glasflächen, Sanitärbereiche
+            </li>
+            <li data-i18n-de="Ideal für Startups & Agenturen"
+                data-i18n-en="Ideal for startups & agencies">
+              Ideal für Startups & Agenturen
+            </li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <div class="card-pill">
+            <span class="card-pill-dot"></span>
+            <span data-i18n-de="Fenster & Spezial" data-i18n-en="Windows & special">
+              Fenster & Spezial
+            </span>
+          </div>
+          <h3 data-i18n-de="Fenster & Umzugsreinigung" data-i18n-en="Windows & move-out cleaning">
+            Fenster & Umzugsreinigung
+          </h3>
+          <p data-i18n-de="Kristallklare Fenster und tiefenreine Räume – perfekt für Umzüge, Übergaben und besondere Anlässe."
+             data-i18n-en="Crystal-clear windows and deeply cleaned rooms – perfect for moves, handovers and special occasions.">
+            Kristallklare Fenster und tiefenreine Räume – perfekt für Umzüge, Übergaben und besondere Anlässe.
+          </p>
+          <ul class="card-list">
+            <li data-i18n-de="Fenster innen & außen (je nach Zugang)"
+                data-i18n-en="Windows inside & outside (depending on access)">
+              Fenster innen & außen (je nach Zugang)
+            </li>
+            <li data-i18n-de="Umzugsreinigung inkl. Übergabe‑Fokus"
+                data-i18n-en="Move-out cleaning incl. handover focus">
+              Umzugsreinigung inkl. Übergabe‑Fokus
+            </li>
+            <li data-i18n-de="Individuelle Pakete auf Anfrage"
+                data-i18n-en="Custom packages on request">
+              Individuelle Pakete auf Anfrage
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="before-after" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-title"
+               data-i18n-de="Vorher / Nachher – echte Ergebnisse."
+               data-i18n-en="Before / After – real results.">
+            Vorher / Nachher – echte Ergebnisse.
+          </div>
+          <div class="section-subtitle"
+               data-i18n-de="Ein Blick sagt mehr als tausend Worte. Ziehe den Regler, um den Unterschied zu sehen."
+               data-i18n-en="One look says more than a thousand words. Drag the slider to see the difference.">
+            Ein Blick sagt mehr als tausend Worte. Ziehe den Regler, um den Unterschied zu sehen.
+          </div>
+        </div>
+        <div class="section-tag"
+             data-i18n-de="Mindestens 4 Beispiele"
+             data-i18n-en="At least 4 examples">
+          Mindestens 4 Beispiele
+        </div>
+      </div>
+
+      <div class="before-after-grid">
+        <!-- Gruppe 1: Büro vor / nach -->
+        <div class="ba-card">
+          <div class="ba-labels">
+            <span data-i18n-de="Vorher" data-i18n-en="Before">Vorher</span>
+            <span data-i18n-de="Nachher" data-i18n-en="After">Nachher</span>
+          </div>
+          <div class="ba-wrapper" data-ba>
+            <img class="ba-img"
+                 src="https://images.pexels.com/photos/37347/office-office-desk-computer-laptop.jpg?auto=compress&cs=tinysrgb&w=900"
+                 alt="Büro vorher" />
+            <div class="ba-after">
+              <img
+                src="https://images.pexels.com/photos/37347/office-office-desk-computer-laptop.jpg?auto=compress&cs=tinysrgb&w=900"
+                alt="Büro nachher" />
+            </div>
+            <div class="ba-handle">⇆</div>
+          </div>
+        </div>
+
+        <!-- Gruppe 2: Klinik vor / nach -->
+        <div class="ba-card">
+          <div class="ba-labels">
+            <span data-i18n-de="Vorher" data-i18n-en="Before">Vorher</span>
+            <span data-i18n-de="Nachher" data-i18n-en="After">Nachher</span>
+          </div>
+          <div class="ba-wrapper" data-ba>
+            <img class="ba-img"
+                 src="https://images.pexels.com/photos/263402/pexels-photo-263402.jpeg?auto=compress&cs=tinysrgb&w=900"
+                 alt="Klinik vorher" />
+            <div class="ba-after">
+              <img
+                src="https://images.pexels.com/photos/236380/pexels-photo-236380.jpeg?auto=compress&cs=tinysrgb&w=900"
+                alt="Klinik nachher" />
+            </div>
+            <div class="ba-handle">⇆</div>
+          </div>
+        </div>
+
+        <!-- Gruppe 3: Wartebereich vor / nach -->
+        <div class="ba-card">
+          <div class="ba-labels">
+            <span data-i18n-de="Vorher" data-i18n-en="Before">Vorher</span>
+            <span data-i18n-de="Nachher" data-i18n-en="After">Nachher</span>
+          </div>
+          <div class="ba-wrapper" data-ba>
+            <img class="ba-img"
+                 src="https://images.pexels.com/photos/3997985/pexels-photo-3997985.jpeg?auto=compress&cs=tinysrgb&w=900"
+                 alt="Wartebereich vorher" />
+            <div class="ba-after">
+              <img
+                src="https://images.pexels.com/photos/3997984/pexels-photo-3997984.jpeg?auto=compress&cs=tinysrgb&w=900"
+                alt="Wartebereich nachher" />
+            </div>
+            <div class="ba-handle">⇆</div>
+          </div>
+        </div>
+
+        <!-- Gruppe 4: Wohnzimmer vor / nach -->
+        <div class="ba-card">
+          <div class="ba-labels">
+            <span data-i18n-de="Vorher" data-i18n-en="Before">Vorher</span>
+            <span data-i18n-de="Nachher" data-i18n-en="After">Nachher</span>
+          </div>
+          <div class="ba-wrapper" data-ba>
+            <img class="ba-img"
+                 src="https://images.pexels.com/photos/3965515/pexels-photo-3965515.jpeg?auto=compress&cs=tinysrgb&w=900"
+                 alt="Wohnzimmer vorher" />
+            <div class="ba-after">
+              <img
+                src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=900"
+                alt="Wohnzimmer nachher" />
+            </div>
+            <div class="ba-handle">⇆</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-title"
+               data-i18n-de="Preise, die klar bleiben."
+               data-i18n-en="Pricing that stays clear.">
+            Preise, die klar bleiben.
+          </div>
+          <div class="section-subtitle"
+               data-i18n-de="Richtwerte – du erhältst immer ein individuelles, transparentes Angebot."
+               data-i18n-en="Guide prices – you always receive an individual, transparent quote.">
+            Richtwerte – du erhältst immer ein individuelles, transparentes Angebot.
+          </div>
+        </div>
+        <div class="section-tag"
+             data-i18n-de="Individuelle Angebote"
+             data-i18n-en="Custom quotes">
+          Individuelle Angebote
+        </div>
+      </div>
+
+      <div class="pricing-grid">
+        <article class="price-card">
+          <h3 data-i18n-de="Wohnungsreinigung" data-i18n-en="Home cleaning">Wohnungsreinigung</h3>
+          <div class="price-tagline"
+               data-i18n-de="Ideal für regelmäßige oder einmalige Reinigung."
+               data-i18n-en="Ideal for regular or one-time cleaning.">
+            Ideal für regelmäßige oder einmalige Reinigung.
+          </div>
+          <div class="price-value">ab 79 €</div>
+          <div class="price-unit"
+               data-i18n-de="pro Einsatz (Richtwert)"
+               data-i18n-en="per visit (guide)">
+            pro Einsatz (Richtwert)
+          </div>
+          <ul class="price-list">
+            <li data-i18n-de="Grundreinigung von Küche, Bad & Wohnräumen"
+                data-i18n-en="Basic cleaning of kitchen, bathroom & living areas">
+              Grundreinigung von Küche, Bad & Wohnräumen
+            </li>
+            <li data-i18n-de="Staubwischen, Saugen, Wischen"
+                data-i18n-en="Dusting, vacuuming, mopping">
+              Staubwischen, Saugen, Wischen
+            </li>
+          </ul>
+        </article>
+
+        <article class="price-card highlight">
+          <h3 data-i18n-de="Büro & Gewerbe" data-i18n-en="Office & commercial">Büro & Gewerbe</h3>
+          <div class="price-tagline"
+               data-i18n-de="Für moderne Büros, Agenturen & Workspaces."
+               data-i18n-en="For modern offices, agencies & workspaces.">
+            Für moderne Büros, Agenturen & Workspaces.
+          </div>
+          <div class="price-value"
+               data-i18n-de="auf Anfrage"
+               data-i18n-en="on request">
+            auf Anfrage
+          </div>
+          <div class="price-unit"
+               data-i18n-de="monatliche Pauschale möglich"
+               data-i18n-en="monthly flat rate possible">
+            monatliche Pauschale möglich
+          </div>
+          <ul class="price-list">
+            <li data-i18n-de="Regelmäßige Büroreinigung nach Plan"
+                data-i18n-en="Regular office cleaning by schedule">
+              Regelmäßige Büroreinigung nach Plan
+            </li>
+            <li data-i18n-de="Arbeitsplätze, Meetingräume, Empfang"
+                data-i18n-en="Workstations, meeting rooms, reception">
+              Arbeitsplätze, Meetingräume, Empfang
+            </li>
+          </ul>
+        </article>
+
+        <article class="price-card">
+          <h3 data-i18n-de="Fenster & Umzug" data-i18n-en="Windows & move-out">Fenster & Umzug</h3>
+          <div class="price-tagline"
+               data-i18n-de="Für Übergaben, Umzüge & besondere Anlässe."
+               data-i18n-en="For handovers, moves & special occasions.">
+            Für Übergaben, Umzüge & besondere Anlässe.
+          </div>
+          <div class="price-value"
+               data-i18n-de="individuell"
+               data-i18n-en="individual">
+            individuell
+          </div>
+          <div class="price-unit"
+               data-i18n-de="je nach Umfang"
+               data-i18n-en="depending on scope">
+            je nach Umfang
+          </div>
+          <ul class="price-list">
+            <li data-i18n-de="Fensterreinigung innen & außen"
+                data-i18n-en="Window cleaning inside & outside">
+              Fensterreinigung innen & außen
+            </li>
+            <li data-i18n-de="Umzugsreinigung inkl. Detail‑Fokus"
+                data-i18n-en="Move-out cleaning incl. detail focus">
+              Umzugsreinigung inkl. Detail‑Fokus
+            </li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-title"
+               data-i18n-de="Nicht nur sauber – sondern durchdacht."
+               data-i18n-en="Not just clean – but considered.">
+            Nicht nur sauber – sondern durchdacht.
+          </div>
+          <div class="section-subtitle"
+               data-i18n-de="ForYou Reinigung verbindet klassische Reinigungsqualität mit einem modernen, digitalen Service‑Ansatz."
+               data-i18n-en="ForYou Reinigung combines classic cleaning quality with a modern digital service approach.">
+            ForYou Reinigung verbindet klassische Reinigungsqualität mit einem modernen, digitalen Service‑Ansatz.
+          </div>
+        </div>
+        <div class="section-tag"
+             data-i18n-de="Modern • Zuverlässig • Detailverliebt"
+             data-i18n-en="Modern • Reliable • Detail‑focused">
+          Modern • Zuverlässig • Detailverliebt
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text"
+             data-i18n-de="Wir wissen: Reinigungsfirmen sehen oft gleich aus – und arbeiten oft auch so. ForYou Reinigung geht bewusst einen anderen Weg. Unser Anspruch: Räume, die sich neu anfühlen, kombiniert mit einem Service, der sich anfühlt wie ein modernes Produkt: klare Kommunikation, digitale Abläufe, schnelle Reaktionszeiten."
+             data-i18n-en="We know: cleaning companies often look the same – and often work the same. ForYou Reinigung deliberately takes a different path. Our goal: spaces that feel new, combined with a service that feels like a modern product: clear communication, digital workflows, fast response times.">
+          Wir wissen: Reinigungsfirmen sehen oft gleich aus – und arbeiten oft auch so. ForYou Reinigung geht bewusst einen anderen Weg. Unser Anspruch: Räume, die sich neu anfühlen, kombiniert mit einem Service, der sich anfühlt wie ein modernes Produkt: klare Kommunikation, digitale Abläufe, schnelle Reaktionszeiten.
+        </div>
+        <div class="about-highlight">
+          <strong data-i18n-de="Warum ForYou Reinigung?"
+                  data-i18n-en="Why ForYou Reinigung?">
+            Warum ForYou Reinigung?
+          </strong>
+          <br /><br />
+          <span data-i18n-de="• Modernes, professionelles Auftreten – online & vor Ort"
+                data-i18n-en="• Modern, professional appearance – online & on-site">
+            • Modernes, professionelles Auftreten – online & vor Ort
+          </span><br />
+          <span data-i18n-de="• Klare, transparente Angebote ohne Überraschungen"
+                data-i18n-en="• Clear, transparent quotes without surprises">
+            • Klare, transparente Angebote ohne Überraschungen
+          </span><br />
+          <span data-i18n-de="• Fokus auf langfristige Zusammenarbeit"
+                data-i18n-en="• Focus on long‑term collaboration">
+            • Fokus auf langfristige Zusammenarbeit
+          </span><br />
+          <span data-i18n-de="• Ideal für Menschen & Unternehmen, die Wert auf Wirkung legen"
+                data-i18n-en="• Ideal for people & companies that care about impact">
+            • Ideal für Menschen & Unternehmen, die Wert auf Wirkung legen
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="section-header">
+        <div>
+          <div class="section-title"
+               data-i18n-de="Bereit für Räume, die sich neu anfühlen?"
+               data-i18n-en="Ready for spaces that feel new?">
+            Bereit für Räume, die sich neu anfühlen?
+          </div>
+          <div class="section-subtitle"
+               data-i18n-de="Schick uns kurz deine Anfrage – wir melden uns mit einem klaren, transparenten Angebot."
+               data-i18n-en="Send us a short request – we’ll get back to you with a clear, transparent quote.">
+            Schick uns kurz deine Anfrage – wir melden uns mit einem klaren, transparenten Angebot.
+          </div>
+        </div>
+        <div class="section-tag"
+             data-i18n-de="Anfrage • WhatsApp • E‑Mail"
+             data-i18n-en="Request • WhatsApp • Email">
+          Anfrage • WhatsApp • E‑Mail
+        </div>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="contact-label"
+               data-i18n-de="Direkter Kontakt"
+               data-i18n-en="Direct contact">
+            Direkter Kontakt
+          </div>
+          <div class="contact-row">
+            <span>
+              📱 <a href="tel:+491234567890" class="contact-value">+49 123 456 7890</a>
+            </span>
+            <span>
+              💬 <a href="https://wa.me/491234567890" class="contact-value"
+                     data-i18n-de="WhatsApp: Direktanfrage möglich"
+                     data-i18n-en="WhatsApp: direct request possible">
+                WhatsApp: Direktanfrage möglich
+              </a>
+            </span>
+            <span>
+              ✉️ <a href="mailto:info@foryou-reinigung.de" class="contact-value">info@foryou-reinigung.de</a>
+            </span>
+          </div>
+          <br />
+          <div class="contact-label"
+               data-i18n-de="Einsatzgebiet"
+               data-i18n-en="Service area">
+            Einsatzgebiet
+          </div>
+          <div class="contact-row">
+            <span data-i18n-de="📍 Köln • Bonn • Umgebung"
+                  data-i18n-en="📍 Cologne • Bonn • region">
+              📍 Köln • Bonn • Umgebung
+            </span>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <div class="contact-label"
+               data-i18n-de="Schnellanfrage (Beispiel‑Text)"
+               data-i18n-en="Quick request (sample text)">
+            Schnellanfrage (Beispiel‑Text)
+          </div>
+          <p style="font-size: 12px; margin-top: 8px;"
+             data-i18n-de="Kopiere diesen Text und schicke ihn uns per WhatsApp oder E‑Mail:"
+             data-i18n-en="Copy this text and send it to us via WhatsApp or email:">
+            Kopiere diesen Text und schicke ihn uns per WhatsApp oder E‑Mail:
+          </p>
+          <p style="font-size: 12px; margin-top: 8px; padding: 8px 10px; border-radius: 10px; background: rgba(255, 255, 255, 0.9); border: 1px solid var(--border-soft);"
+             data-i18n-de="„Hallo ForYou Reinigung, ich interessiere mich für eine Reinigung in [Stadt]. Objekt: [Wohnung/Büro], Größe: [m²], Art der Reinigung: [einmalig/regemäßig/Umzug]. Bitte senden Sie mir ein unverbindliches Angebot. Vielen Dank!“"
+             data-i18n-en="“Hello ForYou Reinigung, I’m interested in a cleaning in [city]. Object: [apartment/office], size: [m²], type of cleaning: [one‑time/regular/move‑out]. Please send me a non‑binding quote. Thank you!”">
+            „Hallo ForYou Reinigung, ich interessiere mich für eine Reinigung in [Stadt]. Objekt: [Wohnung/Büro], Größe: [m²], Art der Reinigung:
+            [einmalig/regemäßig/Umzug]. Bitte senden Sie mir ein unverbindliches Angebot. Vielen Dank!“
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>© ForYou Reinigung – High Quality Cleaning Experience.</div>
+      <div class="footer-links">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#contact"
+           data-i18n-de="Kontakt"
+           data-i18n-en="Contact">
+          Kontakt
+        </a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Floating contact buttons -->
+  <div class="floating-contact">
+    <a href="https://wa.me/491234567890" class="floating-btn" aria-label="WhatsApp">
+      🟢
+    </a>
+    <a href="tel:+491234567890" class="floating-btn secondary" aria-label="Call">
+      📞
+    </a>
+    <a href="mailto:info@foryou-reinigung.de" class="floating-btn mail" aria-label="Email">
+      ✉️
+    </a>
+  </div>
+
+  <script>
+    const langButtons = {
+      de: document.getElementById("lang-de"),
+      en: document.getElementById("lang-en"),
+    };
+
+    function setLanguage(lang) {
+      Object.values(langButtons).forEach(btn => btn.classList.remove("active"));
+      langButtons[lang].classList.add("active");
+
+      document.querySelectorAll("[data-i18n-de]").forEach(el => {
+        const de = el.getAttribute("data-i18n-de");
+        const en = el.getAttribute("data-i18n-en");
+        el.textContent = lang === "de" ? de : (en || de);
+      });
+    }
+
+    langButtons.de.addEventListener("click", () => setLanguage("de"));
+    langButtons.en.addEventListener("click", () => setLanguage("en"));
+
+    const modeButtons = {
+      day: document.getElementById("mode-day"),
+      night: document.getElementById("mode-night"),
+    };
+
+    function setMode(mode) {
+      Object.values(modeButtons).forEach(btn => btn.classList.remove("active"));
+      modeButtons[mode].classList.add("active");
+      if (mode === "night") {
+        document.body.classList.add("dark");
+      } else {
+        document.body.classList.remove("dark");
+      }
+    }
+
+    modeButtons.day.addEventListener("click", () => setMode("day"));
+    modeButtons.night.addEventListener("click", () => setMode("night"));
+
+    document.querySelectorAll("[data-ba]").forEach(wrapper => {
+      const after = wrapper.querySelector(".ba-after");
+      const handle = wrapper.querySelector(".ba-handle");
+
+      function update(x) {
+        const rect = wrapper.getBoundingClientRect();
+        let pos = (x - rect.left) / rect.width;
+        pos = Math.max(0.05, Math.min(0.95, pos));
+        after.style.width = (pos * 100) + "%";
+        handle.style.left = (pos * 100) + "%";
+      }
+
+      wrapper.addEventListener("mousemove", e => {
+        if (e.buttons !== 1) return;
+        update(e.clientX);
+      });
+
+      wrapper.addEventListener("mousedown", e => {
+        update(e.clientX);
+      });
+
+      wrapper.addEventListener("touchstart", e => {
+        update(e.touches[0].clientX);
+      });
+
+      wrapper.addEventListener("touchmove", e => {
+        update(e.touches[0].clientX);
+      });
+    });
+
+    const header = document.getElementById("site-header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 80) {
+        header.classList.add("magic-active");
+      } else {
+        header.classList.remove("magic-active");
+      }
+    });
+
+    setLanguage("de");
+    setMode("day");
+  </script>
+</body>
+</html>
